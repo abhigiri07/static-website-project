@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SSH_CRED = 'node-app-key'
+        SSH_CRED = 'jenkins-key'
         SERVER_IP = '3.84.128.235'
         REMOTE_USER = 'ubuntu'
         WEB_DIR = '/var/www/html'
