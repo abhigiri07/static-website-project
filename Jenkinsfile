@@ -5,7 +5,7 @@ pipeline {
         SSH_CRED = 'jenkins-key'
         SERVER_IP = '3.84.128.235'
         REMOTE_USER = 'ubuntu'
-        WEB_DIR = '/var/www/html'
+        WEB_DIR = '/var/www/html/'
     }
 
     stages {
@@ -23,13 +23,13 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} "sudo rm -rf ${WEB_DIR}/*"
 
                         echo "Uploading project files to /tmp..."
-                        scp -r index.html assets ${REMOTE_USER}@${SERVER_IP}:/tmp/
+                        scp -r * ${REMOTE_USER}@${SERVER_IP}:/tmp/static-website
 
                         echo "Verifying /tmp content..."
                         ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} "ls -l /tmp"
 
                         echo "Deploying to Apache directory..."
-                        ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} "sudo cp -r /tmp/index.html /tmp/assets ${WEB_DIR}/"
+                        ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} "sudo cp -r /tmp/static-website/* ${WEB_DIR}/"
 
                         echo "Restarting Apache to clear cache..."
                         ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${SERVER_IP} "sudo systemctl restart apache2"
