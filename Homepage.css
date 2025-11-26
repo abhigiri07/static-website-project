@@ -7,13 +7,13 @@
 }
 
 .auhandy-section {
-  background-color: grey;
+  background-color: blue;
 }
 .shopping-service {
     padding: 60px;
 }
 .handyman-section {
-    background-color: black;
+    background-color: blue;
 }
 .handyman {
     color: white;
@@ -243,5 +243,6 @@ justify-content: space-around;
         width: 50%;
     }
 }
+
 
   
